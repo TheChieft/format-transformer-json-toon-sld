@@ -21,3 +21,19 @@ export interface ValidationError {
   error?: string;
   suggestion?: string;
 }
+
+export interface FormatMetrics {
+  format: DataFormat;
+  content: string;
+  charCount: number;
+  tokenCount: number;
+  byteSize: number;
+  readabilityScore: number;
+  savingsVsJson: number;
+}
+
+export interface ComparisonMetrics {
+  json: FormatMetrics;
+  toon: FormatMetrics;
+  sld: FormatMetrics;
+}
