@@ -74,8 +74,8 @@ function EditorColumn({ format, value, onChange, metrics, isActive }: EditorColu
                 ? 'text-red-600 dark:text-red-400'
                 : 'text-gray-900 dark:text-gray-100'
             }`}>
-              {metrics?.savingsVsJson > 0 ? '-' : metrics?.savingsVsJson < 0 ? '+' : ''}
-              {Math.abs(metrics?.savingsVsJson || 0)}%
+              {(metrics?.savingsVsJson ?? 0) > 0 ? '-' : (metrics?.savingsVsJson ?? 0) < 0 ? '+' : ''}
+              {Math.abs(metrics?.savingsVsJson ?? 0)}%
             </span>
           </div>
         </div>
