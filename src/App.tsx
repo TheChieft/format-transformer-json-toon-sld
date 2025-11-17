@@ -1,16 +1,13 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { ThreeColumnEditor } from './components/ThreeColumnEditor';
 import { HowItWorksSection } from './components/HowItWorksSection';
 
 function App() {
-  const [currentSection, setCurrentSection] = useState<'home' | 'how-it-works'>('home');
   const howItWorksRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
 
   const handleNavigate = (section: 'home' | 'how-it-works') => {
-    setCurrentSection(section);
-    
     if (section === 'home' && homeRef.current) {
       homeRef.current.scrollIntoView({ behavior: 'smooth' });
     } else if (section === 'how-it-works' && howItWorksRef.current) {
