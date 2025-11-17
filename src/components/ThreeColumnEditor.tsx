@@ -107,6 +107,7 @@ export function ThreeColumnEditor() {
   const [sldContent, setSldContent] = useState('');
   const [activeFormat, setActiveFormat] = useState<DataFormat>('JSON');
   const [error, setError] = useState('');
+  const [hasChanges, setHasChanges] = useState(false);
 
   const [jsonMetrics, setJsonMetrics] = useState<FormatMetrics | null>(null);
   const [toonMetrics, setToonMetrics] = useState<FormatMetrics | null>(null);
@@ -133,7 +134,7 @@ export function ThreeColumnEditor() {
     };
   }, []);
 
-  const syncFormats = useCallback((content: string, sourceFormat: DataFormat) => {
+  const transformFormats = useCallback((content: string, sourceFormat: DataFormat) => {
     if (!content.trim()) {
       setJsonContent('');
       setToonContent('');
@@ -142,6 +143,7 @@ export function ThreeColumnEditor() {
       setToonMetrics(null);
       setSldMetrics(null);
       setError('');
+      setHasChanges(false);
       return;
     }
 
@@ -173,6 +175,8 @@ export function ThreeColumnEditor() {
       setJsonMetrics(calculateMetrics(jsonData, 'JSON', jsonCharCount));
       setToonMetrics(calculateMetrics(toonData, 'TOON', jsonCharCount));
       setSldMetrics(calculateMetrics(sldData, 'SLD', jsonCharCount));
+      
+      setHasChanges(false);
 
     } catch (e) {
       const errorMessage = e instanceof Error ? e.message : 'Transformation error';
@@ -182,19 +186,33 @@ export function ThreeColumnEditor() {
 
   const handleChange = useCallback((value: string, format: DataFormat) => {
     setActiveFormat(format);
+    setHasChanges(true);
     
-    // Update the specific format content immediately for typing responsiveness
+    // Update only the specific format content
     if (format === 'JSON') setJsonContent(value);
     else if (format === 'TOON') setToonContent(value);
     else if (format === 'SLD') setSldContent(value);
+  }, []);
 
-    // Debounce the sync operation
-    const timeoutId = setTimeout(() => {
-      syncFormats(value, format);
-    }, 500);
+  const handleTransform = useCallback(() => {
+    const activeContent = activeFormat === 'JSON' ? jsonContent : 
+                         activeFormat === 'TOON' ? toonContent : 
+                         sldContent;
+    transformFormats(activeContent, activeFormat);
+  }, [activeFormat, jsonContent, toonContent, sldContent, transformFormats]);
 
-    return () => clearTimeout(timeoutId);
-  }, [syncFormats]);
+  // Keyboard shortcut: Ctrl+Enter or Cmd+Enter
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        handleTransform();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleTransform]);
 
   // Load example data on mount
   useEffect(() => {
@@ -205,7 +223,7 @@ export function ThreeColumnEditor() {
     { "id": 3, "name": "Charlie Brown", "role": "user", "active": false }
   ]
 }`;
-    syncFormats(exampleJson, 'JSON');
+    transformFormats(exampleJson, 'JSON');
   }, []);
 
   return (
@@ -248,6 +266,25 @@ export function ThreeColumnEditor() {
           metrics={sldMetrics}
           isActive={activeFormat === 'SLD'}
         />
+      </div>
+
+      {/* Transform Button */}
+      <div className="flex justify-center">
+        <button
+          onClick={handleTransform}
+          disabled={!hasChanges && (jsonContent || toonContent || sldContent) !== ''}
+          className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
+        >
+          <div className="flex items-center space-x-3">
+            <svg className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span className="text-lg">Transform Data</span>
+          </div>
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-gray-500 dark:text-gray-400">
+            {hasChanges ? 'Click to transform' : 'No changes'} • Ctrl+Enter
+          </div>
+        </button>
       </div>
 
       {/* Comparison Summary */}
