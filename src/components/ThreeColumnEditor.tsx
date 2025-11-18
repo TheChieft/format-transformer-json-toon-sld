@@ -457,35 +457,69 @@ export function ThreeColumnEditor() {
       {jsonMetrics && toonMetrics && sldMetrics && (
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300 shadow-lg">
           <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center space-x-2">
-            <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            <svg
+              className="w-6 h-6 text-purple-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
             </svg>
             <span>Performance Comparison</span>
           </h3>
 
           {/* Character Count Comparison */}
           <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Character Count</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Character Count
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: jsonMetrics, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: toonMetrics, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
-                { metrics: sldMetrics, color: 'from-orange-500 to-red-500', bgColor: 'bg-orange-100 dark:bg-orange-900/30' }
+                {
+                  metrics: jsonMetrics,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: toonMetrics,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
+                {
+                  metrics: sldMetrics,
+                  color: 'from-orange-500 to-red-500',
+                  bgColor: 'bg-orange-100 dark:bg-orange-900/30',
+                },
               ].map(({ metrics, color, bgColor }) => {
-                const maxChars = Math.max(jsonMetrics.charCount, toonMetrics.charCount, sldMetrics.charCount);
+                const maxChars = Math.max(
+                  jsonMetrics.charCount,
+                  toonMetrics.charCount,
+                  sldMetrics.charCount
+                );
                 const percentage = (metrics.charCount / maxChars) * 100;
                 return (
                   <div key={`chars-${metrics.format}`} className="space-y-1">
                     <div className="flex justify-between text-sm">
-                      <span className="font-medium text-gray-900 dark:text-gray-100">{metrics.format}</span>
-                      <span className="text-gray-600 dark:text-gray-400">{metrics.charCount} chars</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">
+                        {metrics.format}
+                      </span>
+                      <span className="text-gray-600 dark:text-gray-400">
+                        {metrics.charCount} chars
+                      </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div 
+                      <div
                         className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
                         style={{ width: `${percentage}%` }}
                       >
-                        <span className="text-white text-xs font-bold">{percentage.toFixed(0)}%</span>
+                        <span className="text-white text-xs font-bold">
+                          {percentage.toFixed(0)}%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -496,27 +530,51 @@ export function ThreeColumnEditor() {
 
           {/* Token Count Comparison */}
           <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Estimated Tokens</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Estimated Tokens
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: jsonMetrics, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: toonMetrics, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
-                { metrics: sldMetrics, color: 'from-orange-500 to-red-500', bgColor: 'bg-orange-100 dark:bg-orange-900/30' }
+                {
+                  metrics: jsonMetrics,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: toonMetrics,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
+                {
+                  metrics: sldMetrics,
+                  color: 'from-orange-500 to-red-500',
+                  bgColor: 'bg-orange-100 dark:bg-orange-900/30',
+                },
               ].map(({ metrics, color, bgColor }) => {
-                const maxTokens = Math.max(jsonMetrics.tokenCount, toonMetrics.tokenCount, sldMetrics.tokenCount);
+                const maxTokens = Math.max(
+                  jsonMetrics.tokenCount,
+                  toonMetrics.tokenCount,
+                  sldMetrics.tokenCount
+                );
                 const percentage = (metrics.tokenCount / maxTokens) * 100;
                 return (
                   <div key={`tokens-${metrics.format}`} className="space-y-1">
                     <div className="flex justify-between text-sm">
-                      <span className="font-medium text-gray-900 dark:text-gray-100">{metrics.format}</span>
-                      <span className="text-gray-600 dark:text-gray-400">~{metrics.tokenCount} tokens</span>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">
+                        {metrics.format}
+                      </span>
+                      <span className="text-gray-600 dark:text-gray-400">
+                        ~{metrics.tokenCount} tokens
+                      </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div 
+                      <div
                         className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
                         style={{ width: `${percentage}%` }}
                       >
-                        <span className="text-white text-xs font-bold">{percentage.toFixed(0)}%</span>
+                        <span className="text-white text-xs font-bold">
+                          {percentage.toFixed(0)}%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -527,24 +585,42 @@ export function ThreeColumnEditor() {
 
           {/* Readability Score Comparison */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Readability Score</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Readability Score
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: jsonMetrics, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: toonMetrics, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
-                { metrics: sldMetrics, color: 'from-orange-500 to-red-500', bgColor: 'bg-orange-100 dark:bg-orange-900/30' }
+                {
+                  metrics: jsonMetrics,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: toonMetrics,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
+                {
+                  metrics: sldMetrics,
+                  color: 'from-orange-500 to-red-500',
+                  bgColor: 'bg-orange-100 dark:bg-orange-900/30',
+                },
               ].map(({ metrics, color, bgColor }) => {
                 const percentage = metrics.readabilityScore;
                 return (
                   <div key={`readability-${metrics.format}`} className="space-y-1">
                     <div className="flex justify-between text-sm">
-                      <span className="font-medium text-gray-900 dark:text-gray-100">{metrics.format}</span>
-                      <span className={`font-semibold ${getReadabilityColor(metrics.readabilityScore)}`}>
+                      <span className="font-medium text-gray-900 dark:text-gray-100">
+                        {metrics.format}
+                      </span>
+                      <span
+                        className={`font-semibold ${getReadabilityColor(metrics.readabilityScore)}`}
+                      >
                         {metrics.readabilityScore}/100
                       </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div 
+                      <div
                         className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
                         style={{ width: `${percentage}%` }}
                       >
