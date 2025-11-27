@@ -15,11 +15,7 @@ import { toYAML } from './toYaml';
 /**
  * Main transformation router that handles conversion between any two formats
  */
-export function transformData(
-  input: string,
-  fromFormat: DataFormat,
-  toFormat: DataFormat
-): string {
+export function transformData(input: string, fromFormat: DataFormat, toFormat: DataFormat): string {
   // If same format, return input as-is
   if (fromFormat === toFormat) {
     return input;
@@ -27,7 +23,7 @@ export function transformData(
 
   // Step 1: Parse input to intermediate representation
   let parsedData: ParsedData;
-  
+
   switch (fromFormat) {
     case 'JSON':
       parsedData = parseJSON(input);
@@ -69,4 +65,3 @@ export function transformData(
       throw new Error(`Unsupported output format: ${toFormat}`);
   }
 }
-

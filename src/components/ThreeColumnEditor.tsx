@@ -29,16 +29,22 @@ function EditorColumn({
 }: EditorColumnProps) {
   const readability = value ? calculateReadability(value) : null;
 
-  const formatColors = {
+  const formatColors: Record<DataFormat, string> = {
     JSON: 'from-blue-500 to-cyan-500',
     TOON: 'from-purple-500 to-pink-500',
     SLD: 'from-orange-500 to-red-500',
+    CSV: 'from-green-500 to-emerald-500',
+    TSV: 'from-teal-500 to-cyan-500',
+    YAML: 'from-indigo-500 to-purple-500',
   };
 
-  const formatExtensions = {
+  const formatExtensions: Record<DataFormat, string> = {
     JSON: '.json',
     TOON: '.toon',
     SLD: '.sld',
+    CSV: '.csv',
+    TSV: '.tsv',
+    YAML: '.yaml',
   };
 
   return (
