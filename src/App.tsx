@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { DualColumnEditor } from './components/DualColumnEditor';
-import { HowItWorksSection } from './components/HowItWorksSection';
+import { FormatGallery } from './components/FormatGallery';
 import { FormatComparisonTable } from './components/FormatComparisonTable';
 
 function App() {
@@ -141,12 +141,12 @@ function App() {
         </div>
       </div>
 
-      {/* How It Works Section */}
+      {/* Format Gallery Section */}
       <div
         ref={howItWorksRef}
         className="relative bg-white dark:bg-gray-800 transition-colors duration-300"
       >
-        <HowItWorksSection />
+        <FormatGallery />
       </div>
 
       {/* Format Comparison Section */}
