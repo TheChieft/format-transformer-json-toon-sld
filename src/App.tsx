@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { DualColumnEditor } from './components/DualColumnEditor';
 import { HowItWorksSection } from './components/HowItWorksSection';
+import { FormatComparisonTable } from './components/FormatComparisonTable';
 
 function App() {
   const howItWorksRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,7 @@ function App() {
               </div>
               <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-3 border border-gray-200 dark:border-gray-700 transition-colors duration-300">
                 <div className="text-sm text-gray-600 dark:text-gray-400">Formats</div>
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">3+</div>
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">6+</div>
               </div>
             </div>
           </div>
@@ -146,6 +147,13 @@ function App() {
         className="relative bg-white dark:bg-gray-800 transition-colors duration-300"
       >
         <HowItWorksSection />
+      </div>
+
+      {/* Format Comparison Section */}
+      <div className="relative bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-colors duration-300 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FormatComparisonTable />
+        </div>
       </div>
 
       {/* Footer */}
