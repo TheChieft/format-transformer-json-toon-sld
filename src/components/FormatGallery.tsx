@@ -16,7 +16,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-blue-500 to-cyan-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
       </svg>
     ),
     example: `{
@@ -36,7 +41,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-purple-500 to-pink-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
       </svg>
     ),
     example: `users[1]{id,name,role}:
@@ -49,7 +59,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-orange-500 to-red-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+        />
       </svg>
     ),
     example: `users[
@@ -63,7 +78,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-green-500 to-emerald-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+        />
       </svg>
     ),
     example: `id,name,role
@@ -77,7 +97,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-indigo-500 to-purple-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
       </svg>
     ),
     example: `id	name	role
@@ -91,7 +116,12 @@ const FORMATS: FormatExample[] = [
     color: 'from-pink-500 to-rose-500',
     icon: (
       <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+        />
       </svg>
     ),
     example: `users:
@@ -172,7 +202,12 @@ export function FormatGallery() {
                   aria-label="Previous format"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
                   </svg>
                 </button>
                 <button
@@ -181,7 +216,12 @@ export function FormatGallery() {
                   aria-label="Next format"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </button>
               </div>
@@ -193,7 +233,9 @@ export function FormatGallery() {
             <div className="grid md:grid-cols-2 gap-8">
               {/* Example Code */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">EXAMPLE</h4>
+                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+                  EXAMPLE
+                </h4>
                 <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
                   <pre className="text-sm text-gray-100 font-mono whitespace-pre">
                     {activeFormat.example}
@@ -203,11 +245,15 @@ export function FormatGallery() {
 
               {/* Features */}
               <div>
-                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">KEY FEATURES</h4>
+                <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+                  KEY FEATURES
+                </h4>
                 <ul className="space-y-3">
                   {activeFormat.features.map((feature, index) => (
                     <li key={index} className="flex items-center space-x-3">
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${activeFormat.color}`}></div>
+                      <div
+                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${activeFormat.color}`}
+                      ></div>
                       <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                     </li>
                   ))}

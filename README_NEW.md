@@ -28,31 +28,35 @@ A modern, open-source web application for converting data between serialization 
 ## 🎯 Supported Formats
 
 ### **For LLM Prompts** (Token Efficiency)
-- **TOON** – 40% fewer tokens than JSON, optimized for LLM input  
+
+- **TOON** – 40% fewer tokens than JSON, optimized for LLM input
 - **SLD** – Experimental compact format
 
 ### **For APIs & Web**
+
 - **JSON** – Universal data interchange format
 
 ### **For Spreadsheets & Analytics**
-- **CSV** – Pure tabular data, maximum simplicity  
+
+- **CSV** – Pure tabular data, maximum simplicity
 - **TSV** – Tab-separated for Unix pipelines
 
 ### **For Configuration Files**
-- **YAML** – Human-readable, used in Kubernetes, Docker, CI/CD *(coming soon)*
+
+- **YAML** – Human-readable, used in Kubernetes, Docker, CI/CD _(coming soon)_
 
 ---
 
 ## 📊 Format Comparison Matrix
 
-| Format | Structure | Token Efficiency | Human Readability | Use Case |
-|--------|-----------|------------------|-------------------|----------|
-| **TOON** | High | ⭐⭐⭐⭐⭐ (Best) | ⭐⭐⭐⭐ | LLM prompts |
-| **JSON** | High | ⭐⭐⭐ | ⭐⭐⭐ | APIs, universal |
-| **CSV** | Low | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Flat tables |
-| **YAML** | High | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Config files |
-| **TSV** | Low | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Unix pipes |
-| **SLD** | High | ⭐⭐⭐⭐ | ⭐⭐⭐ | Experimental |
+| Format   | Structure | Token Efficiency  | Human Readability | Use Case        |
+| -------- | --------- | ----------------- | ----------------- | --------------- |
+| **TOON** | High      | ⭐⭐⭐⭐⭐ (Best) | ⭐⭐⭐⭐          | LLM prompts     |
+| **JSON** | High      | ⭐⭐⭐            | ⭐⭐⭐            | APIs, universal |
+| **CSV**  | Low       | ⭐⭐⭐⭐⭐        | ⭐⭐⭐⭐⭐        | Flat tables     |
+| **YAML** | High      | ⭐⭐⭐            | ⭐⭐⭐⭐⭐        | Config files    |
+| **TSV**  | Low       | ⭐⭐⭐⭐⭐        | ⭐⭐⭐            | Unix pipes      |
+| **SLD**  | High      | ⭐⭐⭐⭐          | ⭐⭐⭐            | Experimental    |
 
 ---
 
@@ -61,12 +65,13 @@ A modern, open-source web application for converting data between serialization 
 ### TOON (Token-Oriented Object Notation)
 
 > **From the official TOON repository:**
-> 
-> *"Token-Oriented Object Notation is a compact, human-readable encoding of the JSON data model that minimizes tokens and makes structure easy for models to follow. It's intended for LLM input as a drop-in, lossless representation of your existing JSON."*
+>
+> _"Token-Oriented Object Notation is a compact, human-readable encoding of the JSON data model that minimizes tokens and makes structure easy for models to follow. It's intended for LLM input as a drop-in, lossless representation of your existing JSON."_
 
 **Problem Solved**: LLM tokens cost money. JSON is verbose and token-expensive.
 
-**Key Innovation**: 
+**Key Innovation**:
+
 - Combines YAML's indentation with CSV's tabular layout
 - Explicit `[N]` lengths and `{fields}` headers for LLM guardrails
 - **73.9% accuracy vs JSON's 69.7% while using 39.6% fewer tokens**
@@ -87,13 +92,15 @@ A modern, open-source web application for converting data between serialization 
 
 **Still Relevant**: Universal format, maximum simplicity, smallest file size for flat data
 
-**When to Use**: 
+**When to Use**:
+
 - Spreadsheet applications (Excel, Google Sheets)
 - Database exports
 - Data science workflows
 - ETL pipelines
 
 **When to Avoid**:
+
 - Nested data structures
 - Need for type safety
 - Complex relationships
@@ -109,12 +116,14 @@ A modern, open-source web application for converting data between serialization 
 **Still Relevant**: Configuration files need human editability + hierarchy
 
 **When to Use**:
+
 - Kubernetes manifests
 - Docker Compose files
 - CI/CD pipelines (GitHub Actions, GitLab CI)
 - Application configuration
 
-**Trade-offs**: 
+**Trade-offs**:
+
 - ❌ Indentation sensitivity
 - ❌ Ambiguities (Norway problem: `NO` → `false`)
 - ❌ Slower parsing than JSON
@@ -130,11 +139,13 @@ A modern, open-source web application for converting data between serialization 
 **Still Relevant**: Bioinformatics, Unix pipelines, scientific data
 
 **When to Use**:
+
 - `awk`, `cut`, `paste` workflows
 - Bioinformatics formats (BED, GTF, VCF)
 - Data where commas appear frequently
 
 **When to Avoid**:
+
 - GUI applications (tabs are invisible)
 - Data that may contain literal tabs
 
@@ -148,9 +159,9 @@ All formats convert to a unified internal structure:
 
 ```typescript
 interface ParsedData {
-  collectionName: string;    // Name of the data collection
-  records: Record<string, string | number>[];  // Array of objects
-  fields: string[];          // Field names in order
+  collectionName: string; // Name of the data collection
+  records: Record<string, string | number>[]; // Array of objects
+  fields: string[]; // Field names in order
 }
 ```
 
@@ -163,22 +174,26 @@ Input Format → Parse → Validate → Intermediate → Transform → Output Fo
 ### Format-Specific Decisions
 
 **CSV/TSV**:
+
 - First line = headers → field names
 - Remaining lines → records
 - Type inference: numbers, booleans, strings
 - ⚠️ **Loss**: Everything is flat, no nesting possible
 
 **JSON**:
+
 - Direct parse to intermediate structure
 - Arrays within objects flattened to pipe-separated strings for CSV/TOON
 - ⚠️ **Loss**: None (JSON preserves all structure)
 
 **TOON**:
+
 - Tabular format for uniform arrays
 - Indentation for nested objects
 - ⚠️ **Loss**: Comments not preserved
 
-**YAML** *(coming soon)*:
+**YAML** _(coming soon)_:
+
 - Direct parse to object → same as JSON
 - ⚠️ **Loss**: Comments, anchors, multi-line string formatting
 
@@ -189,20 +204,24 @@ Input Format → Parse → Validate → Intermediate → Transform → Output Fo
 ### What You Lose Converting From:
 
 **CSV/TSV → JSON/TOON**:
+
 - ✅ No loss (gain structure)
 
 **JSON → CSV/TSV**:
+
 - ❌ Nested objects flattened or lost
 - ❌ Arrays converted to pipe-separated strings
 - ❌ Only works for uniform arrays
 
 **JSON/TOON → CSV**:
+
 - ❌ Hierarchy becomes flat
 - ❌ Non-uniform data may fail conversion
 
 ### Validation Warnings
 
 The tool will warn you when:
+
 - Converting nested data to flat format (data loss)
 - Non-uniform arrays (TOON won't be optimal)
 - Type ambiguity (CSV inferring types)
@@ -263,6 +282,7 @@ The optimized production build will be in the `dist/` directory.
 From official TOON repository benchmarks:
 
 ### Mixed-Structure Data (290K tokens)
+
 ```
 TOON          226,613 tokens  (baseline)
 JSON compact  197,270 tokens  (+14.9% vs TOON) ⚡ Winner for non-uniform
@@ -272,6 +292,7 @@ XML           328,191 tokens  (+31.0%)
 ```
 
 ### Flat Tabular Data (164K tokens)
+
 ```
 CSV            63,854 tokens  (baseline) ⭐ Winner for pure tables
 TOON           67,695 tokens  (+6.0% vs CSV)

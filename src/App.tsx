@@ -87,9 +87,9 @@ function App() {
                   />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Real-time Sync</h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Multi-Format Support</h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Edit any format and watch all three update instantly. No manual conversion needed.
+                Transform between 6+ formats: JSON, TOON, SLD, CSV, TSV, and YAML. Choose the right format for your use case.
               </p>
             </div>
 

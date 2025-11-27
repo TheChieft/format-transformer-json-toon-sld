@@ -373,15 +373,15 @@ export function DualColumnEditor() {
       </div>
 
       {/* Transform Button */}
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-4 mb-8">
         <button
           onClick={handleTransform}
           disabled={!hasChanges && inputContent !== ''}
-          className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
+          className="group relative px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
         >
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 md:space-x-3">
             <svg
-              className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500"
+              className="w-5 h-5 md:w-6 md:h-6 group-hover:rotate-180 transition-transform duration-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -393,9 +393,9 @@ export function DualColumnEditor() {
                 d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
               />
             </svg>
-            <span className="text-lg">Transform Data</span>
+            <span className="text-base md:text-lg">Transform Data</span>
           </div>
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-gray-500 dark:text-gray-400">
+          <div className="hidden md:block absolute -bottom-8 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-gray-500 dark:text-gray-400">
             {hasChanges ? 'Click to transform' : 'No changes'} • Ctrl+Enter
           </div>
         </button>
