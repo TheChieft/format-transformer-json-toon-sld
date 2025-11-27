@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Navbar } from './components/Navbar';
-import { ThreeColumnEditor } from './components/ThreeColumnEditor';
+import { DualColumnEditor } from './components/DualColumnEditor';
 import { HowItWorksSection } from './components/HowItWorksSection';
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
 
           {/* Main Editor */}
           <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-gray-200 dark:border-gray-700 shadow-2xl transition-colors duration-300">
-            <ThreeColumnEditor />
+            <DualColumnEditor />
           </div>
 
           {/* Features Grid */}

@@ -69,8 +69,18 @@ function EditorPanel({
               className="p-2 bg-white/20 hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors duration-200"
               title="Copy to clipboard"
             >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              <svg
+                className="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
               </svg>
             </button>
             <button
@@ -79,13 +89,23 @@ function EditorPanel({
               className="p-2 bg-white/20 hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors duration-200"
               title="Download file"
             >
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg
+                className="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
               </svg>
             </button>
           </div>
         </div>
-        
+
         {/* Format Selector */}
         <select
           value={format}
@@ -118,15 +138,21 @@ function EditorPanel({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
               <span className="text-gray-600 dark:text-gray-400">Characters:</span>
-              <p className="font-semibold text-gray-900 dark:text-gray-100">{metrics.charCount.toLocaleString()}</p>
+              <p className="font-semibold text-gray-900 dark:text-gray-100">
+                {metrics.charCount.toLocaleString()}
+              </p>
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">Tokens:</span>
-              <p className="font-semibold text-gray-900 dark:text-gray-100">~{metrics.tokenCount.toLocaleString()}</p>
+              <p className="font-semibold text-gray-900 dark:text-gray-100">
+                ~{metrics.tokenCount.toLocaleString()}
+              </p>
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">Bytes:</span>
-              <p className="font-semibold text-gray-900 dark:text-gray-100">{metrics.byteSize.toLocaleString()}</p>
+              <p className="font-semibold text-gray-900 dark:text-gray-100">
+                {metrics.byteSize.toLocaleString()}
+              </p>
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">Readability:</span>
@@ -205,24 +231,21 @@ export function DualColumnEditor() {
     setHasChanges(true);
   }, []);
 
-  const handleCopy = useCallback(
-    (content: string, format: DataFormat) => {
-      if (!content) return;
+  const handleCopy = useCallback((content: string, format: DataFormat) => {
+    if (!content) return;
 
-      navigator.clipboard
-        .writeText(content)
-        .then(() => {
-          setCopyNotification(`${format} copied!`);
-          setTimeout(() => setCopyNotification(null), 2000);
-        })
-        .catch((err) => {
-          console.error('Failed to copy:', err);
-          setCopyNotification('Failed to copy');
-          setTimeout(() => setCopyNotification(null), 2000);
-        });
-    },
-    []
-  );
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        setCopyNotification(`${format} copied!`);
+        setTimeout(() => setCopyNotification(null), 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err);
+        setCopyNotification('Failed to copy');
+        setTimeout(() => setCopyNotification(null), 2000);
+      });
+  }, []);
 
   const handleDownload = useCallback((content: string, format: DataFormat) => {
     if (!content) return;
@@ -275,7 +298,7 @@ export function DualColumnEditor() {
 
   // Auto-transform on format change
   useEffect(() => {
-    if (inputContent && (inputFormat !== outputFormat)) {
+    if (inputContent && inputFormat !== outputFormat) {
       handleTransform();
     }
   }, [inputFormat, outputFormat]);
@@ -296,12 +319,26 @@ export function DualColumnEditor() {
       {error && (
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
           <div className="flex items-start space-x-3">
-            <svg className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg
+              className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             <div>
-              <h4 className="text-sm font-semibold text-red-800 dark:text-red-300">Transformation Error</h4>
-              <p className="text-sm text-red-700 dark:text-red-400 mt-1 whitespace-pre-wrap">{error}</p>
+              <h4 className="text-sm font-semibold text-red-800 dark:text-red-300">
+                Transformation Error
+              </h4>
+              <p className="text-sm text-red-700 dark:text-red-400 mt-1 whitespace-pre-wrap">
+                {error}
+              </p>
             </div>
           </div>
         </div>
@@ -343,8 +380,18 @@ export function DualColumnEditor() {
           className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 active:scale-95"
         >
           <div className="flex items-center space-x-3">
-            <svg className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            <svg
+              className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              />
             </svg>
             <span className="text-lg">Transform Data</span>
           </div>
@@ -358,23 +405,46 @@ export function DualColumnEditor() {
       {inputMetrics && outputMetrics && (
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 transition-colors duration-300 shadow-lg">
           <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6 flex items-center space-x-2">
-            <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            <svg
+              className="w-6 h-6 text-purple-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              />
             </svg>
             <span>Performance Comparison</span>
           </h3>
 
           {/* Character Count Comparison */}
           <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Character Count</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Character Count
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: inputMetrics, label: `Input (${inputFormat})`, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: outputMetrics, label: `Output (${outputFormat})`, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+                {
+                  metrics: inputMetrics,
+                  label: `Input (${inputFormat})`,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: outputMetrics,
+                  label: `Output (${outputFormat})`,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
               ].map(({ metrics, label, color, bgColor }) => {
                 const maxChars = Math.max(inputMetrics.charCount, outputMetrics.charCount);
                 const percentage = (metrics.charCount / maxChars) * 100;
-                const diff = ((metrics.charCount - inputMetrics.charCount) / inputMetrics.charCount) * 100;
+                const diff =
+                  ((metrics.charCount - inputMetrics.charCount) / inputMetrics.charCount) * 100;
                 return (
                   <div key={label} className="space-y-1">
                     <div className="flex justify-between text-sm">
@@ -383,14 +453,20 @@ export function DualColumnEditor() {
                         {metrics.charCount.toLocaleString()} chars
                         {diff !== 0 && (
                           <span className={diff < 0 ? 'text-green-600 ml-2' : 'text-red-600 ml-2'}>
-                            ({diff > 0 ? '+' : ''}{diff.toFixed(1)}%)
+                            ({diff > 0 ? '+' : ''}
+                            {diff.toFixed(1)}%)
                           </span>
                         )}
                       </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`} style={{ width: `${percentage}%` }}>
-                        <span className="text-white text-xs font-bold">{percentage.toFixed(0)}%</span>
+                      <div
+                        className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
+                        style={{ width: `${percentage}%` }}
+                      >
+                        <span className="text-white text-xs font-bold">
+                          {percentage.toFixed(0)}%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -401,15 +477,28 @@ export function DualColumnEditor() {
 
           {/* Token Count Comparison */}
           <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Estimated Tokens</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Estimated Tokens
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: inputMetrics, label: `Input (${inputFormat})`, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: outputMetrics, label: `Output (${outputFormat})`, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+                {
+                  metrics: inputMetrics,
+                  label: `Input (${inputFormat})`,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: outputMetrics,
+                  label: `Output (${outputFormat})`,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
               ].map(({ metrics, label, color, bgColor }) => {
                 const maxTokens = Math.max(inputMetrics.tokenCount, outputMetrics.tokenCount);
                 const percentage = (metrics.tokenCount / maxTokens) * 100;
-                const diff = ((metrics.tokenCount - inputMetrics.tokenCount) / inputMetrics.tokenCount) * 100;
+                const diff =
+                  ((metrics.tokenCount - inputMetrics.tokenCount) / inputMetrics.tokenCount) * 100;
                 return (
                   <div key={label} className="space-y-1">
                     <div className="flex justify-between text-sm">
@@ -418,14 +507,20 @@ export function DualColumnEditor() {
                         ~{metrics.tokenCount.toLocaleString()} tokens
                         {diff !== 0 && (
                           <span className={diff < 0 ? 'text-green-600 ml-2' : 'text-red-600 ml-2'}>
-                            ({diff > 0 ? '+' : ''}{diff.toFixed(1)}%)
+                            ({diff > 0 ? '+' : ''}
+                            {diff.toFixed(1)}%)
                           </span>
                         )}
                       </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`} style={{ width: `${percentage}%` }}>
-                        <span className="text-white text-xs font-bold">{percentage.toFixed(0)}%</span>
+                      <div
+                        className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
+                        style={{ width: `${percentage}%` }}
+                      >
+                        <span className="text-white text-xs font-bold">
+                          {percentage.toFixed(0)}%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -436,23 +531,40 @@ export function DualColumnEditor() {
 
           {/* Readability Score Comparison */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Readability Score</h4>
+            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+              Readability Score
+            </h4>
             <div className="space-y-3">
               {[
-                { metrics: inputMetrics, label: `Input (${inputFormat})`, color: 'from-blue-500 to-cyan-500', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
-                { metrics: outputMetrics, label: `Output (${outputFormat})`, color: 'from-purple-500 to-pink-500', bgColor: 'bg-purple-100 dark:bg-purple-900/30' },
+                {
+                  metrics: inputMetrics,
+                  label: `Input (${inputFormat})`,
+                  color: 'from-blue-500 to-cyan-500',
+                  bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                },
+                {
+                  metrics: outputMetrics,
+                  label: `Output (${outputFormat})`,
+                  color: 'from-purple-500 to-pink-500',
+                  bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                },
               ].map(({ metrics, label, color, bgColor }) => {
                 const percentage = metrics.readabilityScore;
                 return (
                   <div key={label} className="space-y-1">
                     <div className="flex justify-between text-sm">
                       <span className="font-medium text-gray-900 dark:text-gray-100">{label}</span>
-                      <span className={`font-semibold ${getReadabilityColor(metrics.readabilityScore)}`}>
+                      <span
+                        className={`font-semibold ${getReadabilityColor(metrics.readabilityScore)}`}
+                      >
                         {metrics.readabilityScore}/100
                       </span>
                     </div>
                     <div className={`h-8 ${bgColor} rounded-lg overflow-hidden relative`}>
-                      <div className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`} style={{ width: `${percentage}%` }}>
+                      <div
+                        className={`h-full bg-gradient-to-r ${color} transition-all duration-500 flex items-center justify-end pr-3`}
+                        style={{ width: `${percentage}%` }}
+                      >
                         <span className="text-white text-xs font-bold">{percentage}%</span>
                       </div>
                     </div>
