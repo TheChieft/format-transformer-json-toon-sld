@@ -3,7 +3,7 @@ import { parseCSV } from './csvParser';
 
 /**
  * Parse TSV (Tab Separated Values) to internal ParsedData structure
- * 
+ *
  * TSV is identical to CSV but uses tabs instead of commas
  */
 export function parseTSV(content: string): ParsedData {
@@ -14,7 +14,7 @@ export function parseTSV(content: string): ParsedData {
   // Convert TSV to CSV by replacing tabs with commas
   // (handling quoted values properly)
   const csvContent = tsvToCSV(content);
-  
+
   return parseCSV(csvContent);
 }
 

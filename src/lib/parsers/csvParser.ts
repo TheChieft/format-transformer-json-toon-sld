@@ -2,7 +2,7 @@ import type { ParsedData } from '../types';
 
 /**
  * Parse CSV (Comma Separated Values) to internal ParsedData structure
- * 
+ *
  * Assumptions:
  * - First line contains headers (field names)
  * - Subsequent lines contain data records
@@ -15,7 +15,7 @@ export function parseCSV(content: string): ParsedData {
   }
 
   const lines = content.trim().split('\n');
-  
+
   if (lines.length < 2) {
     throw new Error(
       `❌ CSV must have at least 2 lines (header + data).\n\n💡 Current lines: ${lines.length}`
@@ -24,11 +24,9 @@ export function parseCSV(content: string): ParsedData {
 
   // Parse header line
   const headers = parseCSVLine(lines[0]);
-  
-  if (headers.length === 0 || headers.some(h => !h.trim())) {
-    throw new Error(
-      `❌ CSV headers are invalid.\n\n💡 Headers must be non-empty strings.`
-    );
+
+  if (headers.length === 0 || headers.some((h) => !h.trim())) {
+    throw new Error(`❌ CSV headers are invalid.\n\n💡 Headers must be non-empty strings.`);
   }
 
   // Parse data lines
@@ -44,8 +42,8 @@ export function parseCSV(content: string): ParsedData {
     if (values.length !== headers.length) {
       throw new Error(
         `❌ Row ${i} has ${values.length} columns, but header has ${headers.length}.\n\n` +
-        `💡 All rows must have the same number of columns.\n` +
-        `   Row ${i}: "${line.substring(0, 50)}${line.length > 50 ? '...' : ''}"`
+          `💡 All rows must have the same number of columns.\n` +
+          `   Row ${i}: "${line.substring(0, 50)}${line.length > 50 ? '...' : ''}"`
       );
     }
 
@@ -58,9 +56,7 @@ export function parseCSV(content: string): ParsedData {
   }
 
   if (records.length === 0) {
-    throw new Error(
-      `❌ CSV has no data rows (only header).\n\n💡 Add at least one data row.`
-    );
+    throw new Error(`❌ CSV has no data rows (only header).\n\n💡 Add at least one data row.`);
   }
 
   return {

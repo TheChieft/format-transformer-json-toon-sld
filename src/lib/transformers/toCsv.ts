@@ -2,7 +2,7 @@ import type { ParsedData } from '../types';
 
 /**
  * Transform ParsedData to CSV format
- * 
+ *
  * Features:
  * - Headers on first line
  * - Values quoted if they contain commas, quotes, or newlines
@@ -40,12 +40,7 @@ export function toCSV(data: ParsedData): string {
  */
 function escapeCSVValue(value: string): string {
   // Check if value needs quoting
-  if (
-    value.includes(',') ||
-    value.includes('"') ||
-    value.includes('\n') ||
-    value.includes('\r')
-  ) {
+  if (value.includes(',') || value.includes('"') || value.includes('\n') || value.includes('\r')) {
     // Escape quotes by doubling them
     const escaped = value.replace(/"/g, '""');
     return `"${escaped}"`;
