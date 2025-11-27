@@ -329,10 +329,13 @@ export function ThreeColumnEditor() {
         format === 'JSON' ? jsonContent : format === 'TOON' ? toonContent : sldContent;
       if (!content) return;
 
-      const extensions = {
+      const extensions: Record<DataFormat, string> = {
         JSON: '.json',
         TOON: '.toon',
         SLD: '.sld',
+        CSV: '.csv',
+        TSV: '.tsv',
+        YAML: '.yaml',
       };
 
       const blob = new Blob([content], { type: 'text/plain' });
