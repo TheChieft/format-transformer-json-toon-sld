@@ -4,7 +4,7 @@ export interface ParsedData {
   records: Record<string, string | number>[];
 }
 
-export type DataFormat = 'JSON' | 'TOON' | 'SLD';
+export type DataFormat = 'JSON' | 'TOON' | 'SLD' | 'CSV' | 'TSV' | 'YAML';
 
 export interface TransformationResult {
   output: string;

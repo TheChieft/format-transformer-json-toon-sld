@@ -2,7 +2,7 @@ import type { ParsedData } from '../types';
 
 /**
  * Transform ParsedData to TSV format
- * 
+ *
  * TSV uses tabs as delimiters instead of commas
  */
 export function toTSV(data: ParsedData): string {
